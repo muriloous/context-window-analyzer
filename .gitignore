@@ -1,0 +1,42 @@
+# Específicos do projeto
+*.ignore
+*.ign
+/lab
+exports/*
+!exports/**/.gitkeep
+corpora/*
+!corpora/**/.gitkeep
+!corpora/.gitkeep
+
+# Ambiente virtual
+venv/
+.venv/
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de log e cache
+*.log
+*.sqlite3
+*.db
+
+# Dados de testes ou temporários
+tmp/
+temp/
+
+# Configurações locais
+.env
+*.env
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebooks Checkpoints
+.ipynb_checkpoints/
+
+
