@@ -8,14 +8,15 @@ def build_contingency_dicts_from_context_window(
         tokens: list[str],
         num_target_words: int = 300,
         num_context_words: int = 100,
-        window: list[int] = [-2, -1, 1, 2]
+        window: list[int] = [-2, -1, 1, 2],
+        with_boundaries = False
         ) -> ContingencyTable:
     '''
     Build contingency dicts from the specified context window
     '''
     if isinstance(window, int): window = [*range(- window, 0), *range(1, window + 1)]
 
-    common_words = get_most_common_words(tokens, max(num_context_words, num_target_words))
+    common_words = get_most_common_words(tokens, max(num_context_words, num_target_words), (not with_boundaries))
     target_words = common_words[:num_target_words]
     context_words = common_words[:num_context_words]
 

@@ -21,7 +21,7 @@ def get_lower_tokens(tokens: list[str]) -> list[str]:
     Returns a lowered version of the provided tokens list
 
     '''
-    return [boundary_marker_to_tag(token.lower()) for token in tokens if re.match(r'^[\w.!?;]+$', token)]
+    return [token.lower() for token in tokens]
 
 def get_most_common_words(tokens: list[str], num: int, remove_boundary_markers = False) -> list[str]:
     '''
