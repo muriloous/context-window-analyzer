@@ -45,7 +45,7 @@ def load_childes(childes_reader: Reader|None = None) -> tuple[list[str], list[tu
             ignore_token = False
             if not token.mor:
                 if token.word in UTTERANCE_BOUNDARIES:
-                    token.word = "<br>"
+                    token.word = "<b>"
                     token.pos = "punct" 
                 elif token.pos in INTERMEDIATE_PUNCTUATION or not token.word.isalnum():
                     ignore_token = True
@@ -59,8 +59,8 @@ def load_childes(childes_reader: Reader|None = None) -> tuple[list[str], list[tu
                 tokens.append(token.word)
                 tagged_data.append((token.word, token.pos,))
 
-            if idx == utt_len - 1 and token.word != "<br>" and token.pos not in INTERMEDIATE_PUNCTUATION and token.word not in INTERMEDIATE_PUNCTUATION:
-                tokens.append("<br>")
+            if idx == utt_len - 1 and token.word != "<b>" and token.pos not in INTERMEDIATE_PUNCTUATION and token.word not in INTERMEDIATE_PUNCTUATION:
+                tokens.append("<b>")
                 tagged_data.append((token.word, token.pos,))
     
     return tokens, tagged_data
