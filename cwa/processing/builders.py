@@ -65,26 +65,26 @@ def build_contingency_dicts_from_sentences(
         if not token in target_words: continue
 
         for inc in [-1, 1]:
-            rel_idx = idx + inc
-            idx_distance = inc
-            while   rel_idx > -1 and \
-                    rel_idx < tokens_list_length:
-                if (inc == -1 and idx_distance < window[0]) or (inc == 1 and idx_distance > window[-1]): break
+            relative_idx = idx + inc
+            relative_position = inc
+            while   relative_idx > -1 and \
+                    relative_idx < tokens_list_length:
+                if (inc == -1 and relative_position < window[0]) or (inc == 1 and relative_position > window[-1]): break
                 
-                current_rel_idx = rel_idx
-                current_idx_distance = idx_distance
-                rel_idx += inc
-                idx_distance += inc
-                if current_idx_distance not in window: continue
+                current_relative_idx = relative_idx
+                current_relative_position = relative_position
+                relative_idx += inc
+                relative_position += inc
+                if current_relative_position not in window: continue
 
-                relative_token = tokens[current_rel_idx]
+                relative_token = tokens[current_relative_idx]
                 if is_boundary_marker(relative_token): break
                 if not relative_token.isalnum(): continue
 
                 context_idx = next((idx for idx, word in enumerate(context_words) if word == relative_token), None)
                 if context_idx == None: continue
 
-                position_idx = next((idx for idx, position in enumerate(window) if position == current_idx_distance))
+                position_idx = next((idx for idx, position in enumerate(window) if position == current_relative_position))
                 contingency_vector_idx = (num_context_words * position_idx) + context_idx
 
                 contingency_table.data[token][contingency_vector_idx] += 1
